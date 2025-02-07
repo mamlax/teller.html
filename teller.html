@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spinning Wheel and Advanced Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(45deg, #2d2d2d, #4f4f4f);
+            color: white;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        /* Spinning Wheel */
+        .wheel {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            font-family: Arial, sans-serif;
+            font-size: 30px;
+            background-color: #222;
+            margin-bottom: 40px;
+        }
+
+        .numbers {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transform-origin: center;
+            animation: spin 5s linear infinite;
+        }
+
+        .number {
+            text-align: center;
+            line-height: 50px;
+            height: 50px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Advanced Calculator */
+        .calculator-container {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+            width: 350px;
+            backdrop-filter: blur(10px);
+        }
+
+        .calculator-container h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 2px solid #fff;
+            background: #333;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+
+        input:focus {
+            background: #555;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 18px;
+            width: 100%;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .results {
+            margin-top: 20px;
+        }
+
+        .results div {
+            margin: 5px 0;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .background-effects {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/triangles.png');
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .neon-border {
+            border: 2px solid #00ff00;
+            padding: 10px;
+            box-shadow: 0 0 10px #00ff00, 0 0 30px #00ff00;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Spinning Wheel of Numbers -->
+<div class="wheel">
+    <div class="numbers">
+        <div class="number">1</div>
+        <div class="number">2</div>
+        <div class="number">3</div>
+        <div class="number">4</div>
+        <div class="number">5</div>
+        <div class="number">6</div>
+        <div class="number">7</div>
+        <div class="number">8</div>
+        <div class="number">9</div>
+        <div class="number">10</div>
+    </div>
+</div>
+
+<!-- Advanced Calculator -->
+<div class="calculator-container neon-border">
+    <h1>Advanced Calculator</h1>
+    <input id="numberInput" type="number" placeholder="Enter a number" />
+    <button onclick="calculate()">Calculate</button>
+    <div class="results">
+        <div id="squareResult"></div>
+        <div id="squareRootResult"></div>
+        <div id="cubeResult"></div>
+        <div id="cubeRootResult"></div>
+    </div>
+</div>
+
+<div class="background-effects"></div>
+
+<script>
+    // Spinning Wheel of Numbers Functionality
+    function calculate() {
+        var number = document.getElementById('numberInput').value;
+
+        if (number === '') {
+            alert('Please enter a number!');
+            return;
+        }
+
+        var square = Math.pow(number, 2);
+        var squareRoot = Math.sqrt(number);
+        var cube = Math.pow(number, 3);
+        var cubeRoot = Math.cbrt(number);
+
+        document.getElementById('squareResult').innerText = 'Square: ' + square;
+        document.getElementById('squareRootResult').innerText = 'Square Root: ' + squareRoot.toFixed(3);
+        document.getElementById('cubeResult').innerText = 'Cube: ' + cube;
+        document.getElementById('cubeRootResult').innerText = 'Cube Root: ' + cubeRoot.toFixed(3);
+    }
+</script>
+
+</body>
+</html>
